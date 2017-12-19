@@ -1,0 +1,21 @@
+{
+  "name": "node-todo",
+  "version": "0.0.1",
+  "description": "Web Agenda Service",
+  "main": "server.js",
+  "author": "Alin",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "moment": "^2.20.0",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.9.0"
+  },
+  "engines": {
+    "node": "8.9.1"
+  },
+  "scripts": {
+    "start": "nodejs index.js"
+  }
+}

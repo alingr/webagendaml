@@ -1,0 +1,129 @@
+<!doctype html>
+
+<!-- ANGULAR MODULE -->
+<html ng-app="webAgendaService">
+
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Optimize mobile viewport -->
+
+	<title>Web Agenda ML</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html {
+			overflow-y: scroll;
+		}
+
+		body {
+			padding-top: 50px;
+		}
+
+		#todo-list {
+			margin-bottom: 30px;
+		}
+
+		#todo-form {
+			margin-bottom: 50px;
+		}
+
+		.done {
+			text-decoration: line-through;
+		}
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- load angular -->
+
+	<script src="js/controllers/main.js"></script>
+	<!-- load up controller -->
+	<script src="js/services/todos.js"></script>
+	<!-- load todo service -->
+	<script src="js/core.js"></script>
+	<!-- load main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="well well-sm text-center">
+			<h3>Web agenda service
+				<span class="label label-info">{{ todos.length }}</span>
+			</h3>
+		</div>
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div ng-class="todo.isDone ? 'panel panel-success' : 'panel panel-primary'" align="center" ng-repeat="todo in todos">
+					<div ng-class="todo.isDone ? 'done' : ''" class="panel-heading">{{ todo.text }}</div>
+					<div ng-class="todo.isDone ? 'done' : ''" class="panel-body">
+						<i ng-if="todo.isDone" class="fa fa-check" aria-hidden="true"> Done </i>
+						<p>Priority: {{ todo.priority }}</p>
+						<p ng-if="todo.dueDate">Due date: {{ todo.dueDate | date:'dd/MM/yyyy' }}</p>
+						<!-- <p>isDone: {{ todo.isDone }}</p> -->
+
+						<p>
+							<input ng-if="!todo.isDone" type="button" class="btn btn-success" value="Mark as done" ng-click="updateTodo(todo._id, true)">
+							<input ng-if="todo.isDone" type="button" class="btn btn-warning" value="Mark as undone" ng-click="updateTodo(todo._id, false)">
+							<input type="button" class="btn btn-danger" value="Delete" ng-click="deleteTodo(todo._id)">
+						</p>
+					</div>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="New activity" ng-model="formData.text">
+					</div>
+
+					<div class="form-group">
+						<select class="form-control placeholder" ng-model="formData.priority">
+							<option value="" disabled selected>Priority</option>
+							<option value="low">low</option>
+							<option value="medium">medium</option>
+							<option value="high">high</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input class="form-control" type="date" value="01/01/2017" ng-model="formData.dueDate">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>
+
+
+
+	</div>
+
+</body>
+
+</html>
