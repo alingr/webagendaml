@@ -73,7 +73,7 @@
 					<div ng-class="todo.isDone ? 'done' : ''" class="panel-body">
 						<i ng-if="todo.isDone" class="fa fa-check" aria-hidden="true"> Done </i>
 						<p>Priority: {{ todo.priority }}</p>
-						<p ng-if="todo.dueDate">Due date: {{ todo.dueDate | date:'dd/MM/yyyy' }}</p>
+						<p ng-if="todo.dueDate">Due date: {{ todo.dueDate | date:'dd/MM/yyyy HH:mm' : '-2000' }}</p>
 						<!-- <p>isDone: {{ todo.isDone }}</p> -->
 
 						<p>
