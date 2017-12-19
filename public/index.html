@@ -57,7 +57,7 @@
 		<!-- HEADER AND TODO COUNT -->
 		<div class="well well-sm text-center">
 			<h3>Web agenda ML
-				<span class="label label-info">{{ todos.length }}</span>
+				<span class="label label-info"></span>
 			</h3>
 		</div>
 
@@ -120,6 +120,16 @@
 			</div>
 		</div>
 
+				<!-- FORM TO send mail TODOS -->
+				<div id="todo-mail-form" class="row">
+					<div class="col-sm-8 col-sm-offset-2 text-center">
+						<form>
+
+							<!-- createToDo() WILL CREATE NEW TODOS -->
+							<button type="submit" class="btn btn-primary btn-lg" ng-click="sendMail()">Send backup data per email</button>
+						</form>
+					</div>
+				</div>
 
 
 	</div>

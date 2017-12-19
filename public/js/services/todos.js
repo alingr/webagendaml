@@ -15,6 +15,9 @@ angular.module('todoService', [])
 			},
 			update : function(id, isDone) {
 				return $http.put('/api/todos/' + id + '/' + isDone);
+			},
+			sendmail : function() {
+				return $http.post('/api/sendmail');
 			}
 		}
 	}]);

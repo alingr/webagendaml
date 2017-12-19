@@ -7,6 +7,7 @@ var database = require('./config/database'); 			// load the database config
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var nodemailer = require('nodemailer');
 
 // configuration ===============================================================
 mongoose.connect(database.remoteUrl); 	// Connect to mongodb
